@@ -1581,49 +1581,25 @@
 
     /* =========================================
        ALL
-       
-       ALL에서는 처음 3개만 표시
+      ALL에서는 모든 이미지 노출
     ========================================== */
 
-    function showAllPreview() {
+   function showAllPreview() {
 
+  const items =
+    getPortfolioItems();
 
-      const items =
-        getPortfolioItems();
+  items.forEach(
+    item => {
 
-
-      items.forEach(
-        (
-          item,
-          index
-        ) => {
-
-
-          if (
-            index < 3
-          ) {
-
-            item.classList.remove(
-              "hide"
-            );
-
-          }
-
-
-          else {
-
-            item.classList.add(
-              "hide"
-            );
-
-          }
-
-
-        }
+      item.classList.remove(
+        "hide"
       );
 
-
     }
+  );
+
+}
 
 
 
