@@ -69,75 +69,89 @@
       line-height: 1.7;
     }
 
-    /* =========================================
-       FILTER
-    ========================================= */
+    /* -----------------------------------------
+   FILTER
+----------------------------------------- */
 
-    .filter-wrap {
-      position: sticky;
-      top: 0;
-      z-index: 50;
+const filterButtons =
+  document.querySelectorAll(".filter-btn");
 
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(10px);
+const portfolioItems =
+  document.querySelectorAll(".portfolio-item");
 
-      border-top: 1px solid #eee;
-      border-bottom: 1px solid #eee;
+
+/* ALL에서는 처음 3개만 표시 */
+function showAllPreview() {
+
+  portfolioItems.forEach((item, index) => {
+
+    if (index < 3) {
+      item.classList.remove("hide");
+    } else {
+      item.classList.add("hide");
     }
 
-    .filters {
-      max-width: 1200px;
-      margin: auto;
+  });
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 38px;
+}
 
-      padding: 22px 20px;
 
-      overflow-x: auto;
-      white-space: nowrap;
+/* 카테고리별 전체 표시 */
+function showCategory(category) {
+
+  portfolioItems.forEach(item => {
+
+    const itemCategory =
+      item.dataset.category;
+
+    if (itemCategory === category) {
+
+      item.classList.remove("hide");
+
+    } else {
+
+      item.classList.add("hide");
+
     }
 
-    .filter-btn {
-      position: relative;
+  });
 
-      border: 0;
-      background: none;
+}
 
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
 
-      color: #aaa;
+/* 버튼 클릭 */
+filterButtons.forEach(button => {
 
-      cursor: pointer;
+  button.addEventListener("click", () => {
 
-      transition: 0.25s;
+    /* active 초기화 */
+    filterButtons.forEach(btn =>
+      btn.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+
+    const filter =
+      button.dataset.filter;
+
+
+    if (filter === "all") {
+
+      showAllPreview();
+
+    } else {
+
+      showCategory(filter);
+
     }
 
-    .filter-btn:hover {
-      color: #111;
-    }
+  });
 
-    .filter-btn.active {
-      color: #111;
-    }
+});
 
-    .filter-btn.active::after {
-      content: "";
-
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -8px;
-
-      width: 100%;
-      height: 2px;
-
-      background: #111;
-    }
+/* 처음 사이트 접속 시 ALL 3개만 표시 */
+showAllPreview();
 
     /* =========================================
        PORTFOLIO GRID
