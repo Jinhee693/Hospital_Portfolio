@@ -1,2037 +1,539 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hospital Marketing Portfolio</title>
 
-
   <style>
-
-    /* =========================================
-       RESET
-    ========================================= */
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Pretendard",
-        "Noto Sans KR",
-        Arial,
-        sans-serif;
-
-      background: #ffffff;
-      color: #111111;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", Arial, sans-serif;
+      background: #fff;
+      color: #111;
     }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    button {
-      font-family: inherit;
-    }
-
-
-
-    /* =========================================
-       HEADER
-    ========================================= */
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; }
 
     .portfolio-header {
       width: 100%;
-
-      padding:
-        90px
-        24px
-        60px;
-
+      padding: 90px 24px 60px;
       text-align: center;
     }
-
     .portfolio-header .eyebrow {
       margin-bottom: 16px;
-
       font-size: 12px;
       font-weight: 600;
-
       letter-spacing: 4px;
-
       color: #9b9b9b;
     }
-
     .portfolio-header h1 {
       margin-bottom: 25px;
-
-      font-size:
-        clamp(
-          45px,
-          6vw,
-          76px
-        );
-
+      font-size: clamp(45px, 6vw, 76px);
       font-weight: 700;
       line-height: 1;
       letter-spacing: -3px;
     }
-
     .portfolio-header p {
       font-size: 14px;
-
       line-height: 1.8;
-
-      color: #777777;
+      color: #777;
     }
-
-
-
-    /* =========================================
-       FILTER
-    ========================================= */
 
     .filter-wrap {
       position: sticky;
-
       top: 0;
-
       z-index: 100;
-
       width: 100%;
-
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.96
-        );
-
-      backdrop-filter:
-        blur(12px);
-
-      -webkit-backdrop-filter:
-        blur(12px);
-
-      border-top:
-        1px solid #eeeeee;
-
-      border-bottom:
-        1px solid #eeeeee;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
     }
-
     .filters {
       width: 100%;
-
       max-width: 1400px;
-
-      margin:
-        0
-        auto;
-
-      padding:
-        22px
-        28px;
-
+      margin: 0 auto;
+      padding: 22px 28px;
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       gap: 38px;
-
       white-space: nowrap;
-
       overflow-x: auto;
-
       scrollbar-width: none;
     }
-
-    .filters::-webkit-scrollbar {
-      display: none;
-    }
-
+    .filters::-webkit-scrollbar { display: none; }
     .filter-btn {
       appearance: none;
       -webkit-appearance: none;
-
       position: relative;
-
       margin: 0;
       padding: 0;
-
       border: 0;
       outline: 0;
-
       background: transparent;
-
-      color: #aaaaaa;
-
+      color: #aaa;
       font-size: 13px;
       font-weight: 600;
-
-      letter-spacing: 0.7px;
-
+      letter-spacing: .7px;
       cursor: pointer;
-
-      transition:
-        color
-        0.25s ease;
+      transition: color .25s ease;
     }
-
-    .filter-btn:hover {
-      color: #111111;
-    }
-
-    .filter-btn.active {
-      color: #111111;
-    }
-
+    .filter-btn:hover,
+    .filter-btn.active { color: #111; }
     .filter-btn.active::after {
       content: "";
-
       position: absolute;
-
       left: 0;
-
       bottom: -9px;
-
       width: 100%;
       height: 2px;
-
-      background: #111111;
+      background: #111;
     }
-
-
-
-    /* =========================================
-       PORTFOLIO SECTION
-    ========================================= */
 
     .portfolio-section {
       width: 100%;
-
       max-width: 1400px;
-
-      margin:
-        0
-        auto;
-
-      padding:
-        70px
-        28px
-        120px;
+      margin: 0 auto;
+      padding: 70px 28px 120px;
     }
-
-
-
-    /* =========================================
-       GRID
-    ========================================= */
-
     .portfolio-grid {
       width: 100%;
-
       display: grid;
-
-      grid-template-columns:
-        repeat(
-          3,
-          minmax(0, 1fr)
-        );
-
-      gap:
-        50px
-        28px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 50px 28px;
     }
-
-
-
-    /* =========================================
-       ITEM
-    ========================================= */
-
     .portfolio-item {
       width: 100%;
-
       min-width: 0;
-
       cursor: pointer;
     }
-
-    .portfolio-item.hide {
-      display: none;
-    }
-
-
-
-    /* =========================================
-       THUMBNAIL
-    ========================================= */
+    .portfolio-item.hide { display: none; }
 
     .portfolio-thumb {
       position: relative;
-
       width: 100%;
-
       aspect-ratio: 4 / 3;
-
       overflow: hidden;
-
       background: #fafafa;
     }
-
-
-    /*
-      중요:
-      이미지를 absolute로 배치해서
-      placeholder 때문에 아래로 밀리지 않도록 수정
-    */
-
     .portfolio-thumb img {
       position: absolute;
-
       inset: 0;
-
       z-index: 1;
-
       width: 100%;
       height: 100%;
-
       object-fit: contain;
-
       object-position: center;
-
       opacity: 0;
-
-      transition:
-        opacity 0.25s ease,
-        transform 0.55s cubic-bezier(.2,.7,.2,1);
+      transition: opacity .25s ease, transform .55s cubic-bezier(.2,.7,.2,1);
     }
-
-    .portfolio-thumb img.loaded {
-      opacity: 1;
-    }
-
-    .portfolio-item:hover
-    .portfolio-thumb img.loaded {
-      transform:
-        scale(1.025);
-    }
-
-
-
-    /* =========================================
-       PLACEHOLDER
-    ========================================= */
+    .portfolio-thumb img.loaded { opacity: 1; }
+    .portfolio-item:hover .portfolio-thumb img.loaded { transform: scale(1.025); }
 
     .placeholder {
       position: absolute;
-
       inset: 0;
-
       z-index: 0;
-
-      width: 100%;
-      height: 100%;
-
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       text-align: center;
-
-      background:
-        #f5f5f5;
-
-      color: #aaaaaa;
-
+      background: #f5f5f5;
+      color: #aaa;
       font-size: 12px;
-
       line-height: 1.7;
     }
 
-
-
-    /* =========================================
-       HOVER OVERLAY
-    ========================================= */
-
     .portfolio-overlay {
       position: absolute;
-
       inset: 0;
-
       z-index: 2;
-
       display: flex;
-
       flex-direction: column;
-
       align-items: center;
       justify-content: center;
-
-      background:
-        rgba(
-          0,
-          0,
-          0,
-          0.58
-        );
-
-      color: #ffffff;
-
+      background: rgba(0,0,0,.58);
+      color: #fff;
       opacity: 0;
-
-      transition:
-        opacity
-        0.3s ease;
+      transition: opacity .3s ease;
     }
-
-    .portfolio-item:hover
-    .portfolio-overlay {
-      opacity: 1;
-    }
-
-    .portfolio-overlay
-    .category {
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+    .portfolio-overlay .category {
       margin-bottom: 11px;
-
       font-size: 10px;
-
       letter-spacing: 2px;
-
-      opacity: 0.75;
+      opacity: .75;
     }
-
     .portfolio-overlay h3 {
       font-size: 18px;
-
       font-weight: 500;
-
-      letter-spacing: -0.4px;
+      letter-spacing: -.4px;
     }
 
-
-
-    /* =========================================
-       PORTFOLIO INFO
-    ========================================= */
-
-    .portfolio-info {
-      padding-top: 17px;
-    }
-
-    .portfolio-info
-    .category {
+    .portfolio-info { padding-top: 17px; }
+    .portfolio-info .category {
       margin-bottom: 7px;
-
       color: #a0a0a0;
-
       font-size: 11px;
-
       font-weight: 500;
-
       letter-spacing: 1.5px;
     }
-
     .portfolio-info h3 {
       font-size: 16px;
-
       font-weight: 600;
-
       line-height: 1.4;
-
-      letter-spacing: -0.5px;
+      letter-spacing: -.5px;
     }
-
-
-
-    /* =========================================
-       MODAL
-    ========================================= */
 
     .modal {
       position: fixed;
-
       inset: 0;
-
       z-index: 9999;
-
       display: none;
-
       overflow-y: auto;
-
-      padding:
-        75px
-        25px
-        80px;
-
-      background:
-        rgba(
-          0,
-          0,
-          0,
-          0.93
-        );
+      padding: 75px 25px 80px;
+      background: rgba(0,0,0,.93);
     }
-
-    .modal.show {
-      display: block;
-    }
-
+    .modal.show { display: block; }
     .modal-inner {
       width: 100%;
-
       max-width: 1200px;
-
-      margin:
-        0
-        auto;
+      margin: 0 auto;
     }
-
-
-
-    /* =========================================
-       MODAL CLOSE
-    ========================================= */
-
     .modal-close {
       position: fixed;
-
       top: 25px;
-
       right: 30px;
-
       z-index: 10000;
-
       width: 48px;
       height: 48px;
-
       border: 0;
-
       border-radius: 50%;
-
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.14
-        );
-
-      color: #ffffff;
-
+      background: rgba(255,255,255,.14);
+      color: #fff;
       font-size: 27px;
-
       line-height: 48px;
-
       cursor: pointer;
-
-      transition:
-        background
-        0.2s ease;
+      transition: background .2s ease;
     }
-
-    .modal-close:hover {
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.25
-        );
-    }
-
-
-
-    /* =========================================
-       MODAL TITLE
-    ========================================= */
-
+    .modal-close:hover { background: rgba(255,255,255,.25); }
     .modal-title {
       margin-bottom: 40px;
-
       text-align: center;
-
-      color: #ffffff;
+      color: #fff;
     }
-
-    .modal-title
-    .category {
+    .modal-title .category {
       margin-bottom: 10px;
-
-      color: #aaaaaa;
-
+      color: #aaa;
       font-size: 11px;
-
       letter-spacing: 2px;
     }
-
-    .modal-title h2 {
-      font-size: 27px;
-
-      font-weight: 500;
-    }
-
-
-
-    /* =========================================
-       MODAL IMAGES
-    ========================================= */
-
+    .modal-title h2 { font-size: 27px; font-weight: 500; }
     .modal-images {
       display: flex;
-
       flex-direction: column;
-
       gap: 55px;
     }
-
-    .modal-image-section {
-      width: 100%;
-    }
-
+    .modal-image-section { width: 100%; }
     .modal-label {
       margin-bottom: 12px;
-
       text-align: center;
-
-      color: #cccccc;
-
+      color: #ccc;
       font-size: 10px;
-
       letter-spacing: 2px;
     }
-
     .modal-image-block {
       width: 100%;
-
       padding: 12px;
-
-      background: #ffffff;
+      background: #fff;
     }
-
     .modal-image-block img {
       width: 100%;
-
       height: auto;
-
       margin: auto;
     }
-
     .modal-image-section.mobile {
       max-width: 600px;
-
-      margin:
-        0
-        auto;
+      margin: 0 auto;
     }
 
-
-
-    /* =========================================
-       FOOTER
-    ========================================= */
-
     footer {
-      padding:
-        50px
-        20px;
-
-      border-top:
-        1px solid #eeeeee;
-
+      padding: 50px 20px;
+      border-top: 1px solid #eee;
       text-align: center;
-
-      color: #999999;
-
+      color: #999;
       font-size: 11px;
-
       letter-spacing: 1px;
     }
 
-
-
-    /* =========================================
-       TABLET
-    ========================================= */
-
-    @media
-    (max-width: 1000px) {
-
-      .portfolio-grid {
-        grid-template-columns:
-          repeat(
-            2,
-            minmax(0, 1fr)
-          );
-      }
-
+    @media (max-width: 1000px) {
+      .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
-
-
-    /* =========================================
-       MOBILE
-    ========================================= */
-
-    @media
-    (max-width: 650px) {
-
-      .portfolio-header {
-        padding:
-          65px
-          20px
-          45px;
-      }
-
-      .portfolio-header h1 {
-        letter-spacing: -2px;
-      }
-
+    @media (max-width: 650px) {
+      .portfolio-header { padding: 65px 20px 45px; }
+      .portfolio-header h1 { letter-spacing: -2px; }
       .filters {
         justify-content: flex-start;
-
         gap: 26px;
-
-        padding:
-          20px
-          16px;
+        padding: 20px 16px;
       }
-
-      .portfolio-section {
-        padding:
-          50px
-          16px
-          80px;
-      }
-
-      .portfolio-grid {
-        grid-template-columns:
-          1fr;
-
-        gap: 42px;
-      }
-
-      .portfolio-overlay {
-        display: none;
-      }
-
-      .modal {
-        padding:
-          70px
-          10px
-          40px;
-      }
-
-      .modal-close {
-        top: 14px;
-
-        right: 14px;
-      }
-
+      .portfolio-section { padding: 50px 16px 80px; }
+      .portfolio-grid { grid-template-columns: 1fr; gap: 42px; }
+      .portfolio-overlay { display: none; }
+      .modal { padding: 70px 10px 40px; }
+      .modal-close { top: 14px; right: 14px; }
     }
-
-
   </style>
-
 </head>
 
-
-
 <body>
-
-
-  <!-- =========================================
-       HEADER
-  ========================================== -->
-
   <header class="portfolio-header">
-
-    <div class="eyebrow">
-      HOSPITAL MARKETING
-    </div>
-
-    <h1>
-      PORTFOLIO
-    </h1>
-
-    <p>
-      병원 브랜드의 특성과 목적에 맞춰<br>
-      제작한 콘텐츠 디자인 작업물입니다.
-    </p>
-
+    <div class="eyebrow">HOSPITAL MARKETING</div>
+    <h1>PORTFOLIO</h1>
+    <p>병원 브랜드의 특성과 목적에 맞춰<br>제작한 콘텐츠 디자인 작업물입니다.</p>
   </header>
 
-
-
-  <!-- =========================================
-       FILTER
-  ========================================== -->
-
   <nav class="filter-wrap">
-
     <div class="filters">
-
-      <button
-        class="filter-btn active"
-        data-filter="all"
-      >
-        ALL
-      </button>
-
-      <button
-        class="filter-btn"
-        data-filter="blog"
-      >
-        BLOG SKIN
-      </button>
-
-      <button
-        class="filter-btn"
-        data-filter="event"
-      >
-        EVENT
-      </button>
-
-      <button
-        class="filter-btn"
-        data-filter="posting"
-      >
-        POSTING
-      </button>
-
-      <button
-        class="filter-btn"
-        data-filter="holiday"
-      >
-        HOLIDAY
-      </button>
-
+      <button class="filter-btn active" data-filter="all">ALL</button>
+      <button class="filter-btn" data-filter="blog">BLOG SKIN</button>
+      <button class="filter-btn" data-filter="event">EVENT</button>
+      <button class="filter-btn" data-filter="posting">POSTING</button>
+      <button class="filter-btn" data-filter="holiday">HOLIDAY</button>
     </div>
-
   </nav>
 
-
-
-  <!-- =========================================
-       PORTFOLIO
-  ========================================== -->
-
   <main class="portfolio-section">
-
-    <div
-      class="portfolio-grid"
-      id="portfolioGrid"
-    >
-    </div>
-
+    <div class="portfolio-grid" id="portfolioGrid"></div>
   </main>
 
-
-
-  <!-- =========================================
-       MODAL
-  ========================================== -->
-
-  <div
-    class="modal"
-    id="portfolioModal"
-  >
-
-    <button
-      class="modal-close"
-      id="modalClose"
-      type="button"
-    >
-      ×
-    </button>
-
-
+  <div class="modal" id="portfolioModal">
+    <button class="modal-close" id="modalClose" type="button">×</button>
     <div class="modal-inner">
-
       <div class="modal-title">
-
-        <div
-          class="category"
-          id="modalCategory"
-        >
-        </div>
-
-        <h2
-          id="modalTitle"
-        >
-        </h2>
-
+        <div class="category" id="modalCategory"></div>
+        <h2 id="modalTitle"></h2>
       </div>
-
-
-      <div
-        class="modal-images"
-        id="modalImages"
-      >
-      </div>
-
+      <div class="modal-images" id="modalImages"></div>
     </div>
-
   </div>
 
-
-
-  <!-- =========================================
-       FOOTER
-  ========================================== -->
-
-  <footer>
-    © 2026 Hospital Marketing Portfolio
-  </footer>
-
-
-
-  <!-- =========================================
-       JAVASCRIPT
-  ========================================== -->
+  <footer>© 2026 Hospital Marketing Portfolio</footer>
 
   <script>
-
-
-    /* =========================================
-       PORTFOLIO DATA
-    ========================================== */
+    const pad2 = n => String(n).padStart(2, "0");
 
     const portfolioData = [
+      ...Array.from({ length: 10 }, (_, i) => {
+        const no = pad2(i + 1);
+        return {
+          category: "blog",
+          title: `Blog Skin Design ${no}`,
+          main: `images/blog/blog${no}_pc.png`,
+          sub: `images/blog/blog${no}_mobile.png`
+        };
+      }),
 
+      ...Array.from({ length: 19 }, (_, i) => {
+        const no = pad2(i + 1);
+        return {
+          category: "event",
+          title: `Event Design ${no}`,
+          main: `images/event/event${no}.png`
+        };
+      }),
 
-      /* =====================================
-         BLOG SKIN
-      ===================================== */
-
-      {
-        category: "blog",
-        title: "Blog Skin Design 01",
-        main: "images/blog/blog01_pc.png",
-        sub: "images/blog/blog01_mobile.png"
-      },
-
-      {
-        category: "blog",
-        title: "Blog Skin Design 02",
-        main: "images/blog/blog02_pc.png",
-        sub: "images/blog/blog02_mobile.png"
-      },
-
-      {
-        category: "blog",
-        title: "Blog Skin Design 03",
-        main: "images/blog/blog03_pc.png",
-        sub: "images/blog/blog03_mobile.png"
-      },
-
-      {
-        category: "blog",
-        title: "Blog Skin Design 04",
-        main: "images/blog/blog04_pc.png",
-        sub: "images/blog/blog04_mobile.png"
-      },
+      ...Array.from({ length: 30 }, (_, i) => {
+        const no = pad2(i + 1);
+        return {
+          category: "posting",
+          title: `Posting Design ${no}`,
+          main: `images/posting/posting${no}.png`
+        };
+      }),
 
       {
-        category: "blog",
-        title: "Blog Skin Design 05",
-        main: "images/blog/blog05_pc.png",
-        sub: "images/blog/blog05_mobile.png"
-      },
-
-      {
-        category: "blog",
-        title: "Blog Skin Design 06",
-        main: "images/blog/blog06_pc.png",
-        sub: "images/blog/blog06_mobile.png"
-      },
-
-      {
-        category: "blog",
-        title: "Blog Skin Design 07",
-        main: "images/blog/blog07_pc.png",
-        sub: "images/blog/blog07_mobile.png"
-      },
-
-      {
-        category: "blog",
-        title: "Blog Skin Design 08",
-        main: "images/blog/blog08_pc.png",
-        sub: "images/blog/blog08_mobile.png"
-      },
-
-      {
-        category: "blog",
-        title: "Blog Skin Design 09",
-        main: "images/blog/blog09_pc.png",
-        sub: "images/blog/blog09_mobile.png"
-      },
-
-      {
-        category: "blog",
-        title: "Blog Skin Design 10",
-        main: "images/blog/blog10_pc.png",
-        sub: "images/blog/blog10_mobile.png"
-      },
-
-
-
-      /* =====================================
-         EVENT
-      ===================================== */
-
-      {
-        category: "event",
-        title: "Event Design 01",
-        main: "images/event/event01.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 02",
-        main: "images/event/event02.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 03",
-        main: "images/event/event03.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 04",
-        main: "images/event/event04.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 05",
-        main: "images/event/event05.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 06",
-        main: "images/event/event06.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 07",
-        main: "images/event/event07.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 08",
-        main: "images/event/event08.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 09",
-        main: "images/event/event09.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 10",
-        main: "images/event/event10.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 11",
-        main: "images/event/event11.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 12",
-        main: "images/event/event12.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 13",
-        main: "images/event/event13.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 14",
-        main: "images/event/event14.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 15",
-        main: "images/event/event15.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 16",
-        main: "images/event/event16.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 17",
-        main: "images/event/event17.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 18",
-        main: "images/event/event18.png"
-      },
-
-      {
-        category: "event",
-        title: "Event Design 19",
-        main: "images/event/event19.png"
-      },
-
-
-
-/* =====================================
-   POSTING
-===================================== */
-
-{
-  category: "posting",
-  title: "Posting Design 01",
-  main: "images/posting/posting01.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 02",
-  main: "images/posting/posting02.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 03",
-  main: "images/posting/posting03.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 04",
-  main: "images/posting/posting04.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 05",
-  main: "images/posting/posting05.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 06",
-  main: "images/posting/posting06.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 07",
-  main: "images/posting/posting07.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 08",
-  main: "images/posting/posting08.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 09",
-  main: "images/posting/posting09.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 10",
-  main: "images/posting/posting10.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 11",
-  main: "images/posting/posting11.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 12",
-  main: "images/posting/posting12.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 13",
-  main: "images/posting/posting13.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 14",
-  main: "images/posting/posting14.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 15",
-  main: "images/posting/posting15.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 16",
-  main: "images/posting/posting16.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 17",
-  main: "images/posting/posting17.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 18",
-  main: "images/posting/posting18.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 19",
-  main: "images/posting/posting19.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 20",
-  main: "images/posting/posting20.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 21",
-  main: "images/posting/posting21.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 22",
-  main: "images/posting/posting22.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 23",
-  main: "images/posting/posting23.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 24",
-  main: "images/posting/posting24.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 25",
-  main: "images/posting/posting25.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 26",
-  main: "images/posting/posting26.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 27",
-  main: "images/posting/posting27.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 28",
-  main: "images/posting/posting28.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 29",
-  main: "images/posting/posting29.png"
-},
-
-{
-  category: "posting",
-  title: "Posting Design 30",
-  main: "images/posting/posting30.png"
-},
-
-
-
-    /* =========================================
-       CATEGORY NAME
-    ========================================== */
+        category: "holiday",
+        title: "Holiday Design 01",
+        main: "images/holiday/holiday01.png"
+      }
+    ];
 
     const categoryNames = {
-
-      blog:
-        "BLOG SKIN",
-
-      event:
-        "EVENT",
-
-      posting:
-        "POSTING",
-
-      holiday:
-        "HOLIDAY"
-
+      blog: "BLOG SKIN",
+      event: "EVENT",
+      posting: "POSTING",
+      holiday: "HOLIDAY"
     };
 
-
-
-    /* =========================================
-       ELEMENTS
-    ========================================== */
-
-    const portfolioGrid =
-      document.getElementById(
-        "portfolioGrid"
-      );
-
-    const filterButtons =
-      document.querySelectorAll(
-        ".filter-btn"
-      );
-
-    const modal =
-      document.getElementById(
-        "portfolioModal"
-      );
-
-    const modalClose =
-      document.getElementById(
-        "modalClose"
-      );
-
-    const modalCategory =
-      document.getElementById(
-        "modalCategory"
-      );
-
-    const modalTitle =
-      document.getElementById(
-        "modalTitle"
-      );
-
-    const modalImages =
-      document.getElementById(
-        "modalImages"
-      );
-
-
-
-    /* =========================================
-       CREATE PORTFOLIO
-    ========================================== */
+    const portfolioGrid = document.getElementById("portfolioGrid");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const modal = document.getElementById("portfolioModal");
+    const modalClose = document.getElementById("modalClose");
+    const modalCategory = document.getElementById("modalCategory");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalImages = document.getElementById("modalImages");
 
     function createPortfolioItems() {
-
       portfolioGrid.innerHTML = "";
 
-
-      portfolioData.forEach(
-        (
-          item,
-          index
-        ) => {
-
-
-          const article =
-            document.createElement(
-              "article"
-            );
-
-
-          article.className =
-            "portfolio-item";
-
-
-          article.dataset.category =
-            item.category;
-
-
-          article.dataset.index =
-            index;
-
-
-
-          const thumb =
-            document.createElement(
-              "div"
-            );
-
-
-          thumb.className =
-            "portfolio-thumb";
-
-
-
-          const placeholder =
-            document.createElement(
-              "div"
-            );
-
-
-          placeholder.className =
-            "placeholder";
-
-
-          placeholder.innerHTML =
-            `${categoryNames[item.category]}<br>이미지를 불러오는 중입니다.`;
-
-
-
-          const image =
-            document.createElement(
-              "img"
-            );
-
-
-          /*
-            중요:
-            onload / onerror를 먼저 등록하고
-            src를 마지막에 설정
-          */
-
-          image.alt =
-            item.title;
-
-
-          image.loading =
-            "lazy";
-
-
-          image.decoding =
-            "async";
-
-
-          image.onload =
-            function () {
-
-              image.classList.add(
-                "loaded"
-              );
-
-              placeholder.remove();
-
-            };
-
-
-          image.onerror =
-            function () {
-
-              image.remove();
-
-              placeholder.innerHTML =
-                `${categoryNames[item.category]}<br>이미지 파일을 확인해주세요.`;
-
-            };
-
-
-          image.src =
-            item.main;
-
-
-
-          /*
-            캐시에 이미 저장된 이미지 대응
-          */
-
-          if (
-            image.complete &&
-            image.naturalWidth > 0
-          ) {
-
-            image.classList.add(
-              "loaded"
-            );
-
-            placeholder.remove();
-
-          }
-
-
-
-          const overlay =
-            document.createElement(
-              "div"
-            );
-
-
-          overlay.className =
-            "portfolio-overlay";
-
-
-          overlay.innerHTML = `
-
-            <div class="category">
-              ${categoryNames[item.category]}
-            </div>
-
-            <h3>
-              ${item.title}
-            </h3>
-
-          `;
-
-
-
-          thumb.appendChild(
-            placeholder
-          );
-
-
-          thumb.appendChild(
-            image
-          );
-
-
-          thumb.appendChild(
-            overlay
-          );
-
-
-
-          const info =
-            document.createElement(
-              "div"
-            );
-
-
-          info.className =
-            "portfolio-info";
-
-
-          info.innerHTML = `
-
-            <div class="category">
-              ${categoryNames[item.category]}
-            </div>
-
-            <h3>
-              ${item.title}
-            </h3>
-
-          `;
-
-
-
-          article.appendChild(
-            thumb
-          );
-
-
-          article.appendChild(
-            info
-          );
-
-
-
-          article.addEventListener(
-            "click",
-            function () {
-
-              openModal(
-                item
-              );
-
-            }
-          );
-
-
-
-          portfolioGrid.appendChild(
-            article
-          );
-
-
+      portfolioData.forEach((item, index) => {
+        const article = document.createElement("article");
+        article.className = "portfolio-item";
+        article.dataset.category = item.category;
+        article.dataset.index = index;
+
+        const thumb = document.createElement("div");
+        thumb.className = "portfolio-thumb";
+
+        const placeholder = document.createElement("div");
+        placeholder.className = "placeholder";
+        placeholder.innerHTML = `${categoryNames[item.category]}<br>이미지를 불러오는 중입니다.`;
+
+        const image = document.createElement("img");
+        image.alt = item.title;
+        image.loading = "lazy";
+        image.decoding = "async";
+
+        image.onload = () => {
+          image.classList.add("loaded");
+          if (placeholder.isConnected) placeholder.remove();
+        };
+
+        image.onerror = () => {
+          image.remove();
+          placeholder.innerHTML = `${categoryNames[item.category]}<br>이미지 파일을 확인해주세요.`;
+        };
+
+        image.src = item.main;
+
+        if (image.complete && image.naturalWidth > 0) {
+          image.classList.add("loaded");
+          if (placeholder.isConnected) placeholder.remove();
         }
-      );
 
+        const overlay = document.createElement("div");
+        overlay.className = "portfolio-overlay";
+        overlay.innerHTML = `
+          <div class="category">${categoryNames[item.category]}</div>
+          <h3>${item.title}</h3>
+        `;
 
+        thumb.appendChild(placeholder);
+        thumb.appendChild(image);
+        thumb.appendChild(overlay);
+
+        const info = document.createElement("div");
+        info.className = "portfolio-info";
+        info.innerHTML = `
+          <div class="category">${categoryNames[item.category]}</div>
+          <h3>${item.title}</h3>
+        `;
+
+        article.appendChild(thumb);
+        article.appendChild(info);
+        article.addEventListener("click", () => openModal(item));
+        portfolioGrid.appendChild(article);
+      });
     }
-
-
-
-    /* =========================================
-       ITEMS
-    ========================================== */
 
     function getPortfolioItems() {
-
-      return document.querySelectorAll(
-        ".portfolio-item"
-      );
-
+      return document.querySelectorAll(".portfolio-item");
     }
-
-
-
-    /* =========================================
-       ALL
-       모든 작업물 표시
-    ========================================== */
 
     function showAllPreview() {
-
-      const items =
-        getPortfolioItems();
-
-
-      items.forEach(
-        item => {
-
-          item.classList.remove(
-            "hide"
-          );
-
-        }
-      );
-
+      getPortfolioItems().forEach(item => item.classList.remove("hide"));
     }
 
-
-
-    /* =========================================
-       CATEGORY
-    ========================================== */
-
-    function showCategory(
-      category
-    ) {
-
-      const items =
-        getPortfolioItems();
-
-
-      items.forEach(
-        item => {
-
-
-          if (
-            item.dataset.category
-            ===
-            category
-          ) {
-
-            item.classList.remove(
-              "hide"
-            );
-
-          }
-
-          else {
-
-            item.classList.add(
-              "hide"
-            );
-
-          }
-
-
-        }
-      );
-
+    function showCategory(category) {
+      getPortfolioItems().forEach(item => {
+        item.classList.toggle("hide", item.dataset.category !== category);
+      });
     }
 
-
-
-    /* =========================================
-       FILTER CLICK
-    ========================================== */
-
-    filterButtons.forEach(
-      button => {
-
-
-        button.addEventListener(
-          "click",
-          function () {
-
-
-            filterButtons.forEach(
-              btn =>
-
-                btn.classList.remove(
-                  "active"
-                )
-
-            );
-
-
-            button.classList.add(
-              "active"
-            );
-
-
-            const filter =
-              button.dataset.filter;
-
-
-            if (
-              filter === "all"
-            ) {
-
-              showAllPreview();
-
-            }
-
-            else {
-
-              showCategory(
-                filter
-              );
-
-            }
-
-
-          }
-        );
-
-
-      }
-    );
-
-
-
-    /* =========================================
-       MODAL
-    ========================================== */
-
-    function openModal(
-      item
-    ) {
-
-
-      modalCategory.textContent =
-        categoryNames[
-          item.category
-        ];
-
-
-      modalTitle.textContent =
-        item.title;
-
-
-      modalImages.innerHTML =
-        "";
-
-
-
-      /* MAIN IMAGE */
-
-      if (
-        item.main
-      ) {
-
-
-        const mainSection =
-          document.createElement(
-            "div"
-          );
-
-
-        mainSection.className =
-          "modal-image-section";
-
-
-
-        const mainLabel =
-          document.createElement(
-            "div"
-          );
-
-
-        mainLabel.className =
-          "modal-label";
-
-
-        mainLabel.textContent =
-          item.category === "blog"
-          ?
-          "PC VERSION"
-          :
-          "DESIGN";
-
-
-
-        const mainBox =
-          document.createElement(
-            "div"
-          );
-
-
-        mainBox.className =
-          "modal-image-block";
-
-
-
-        const mainImage =
-          document.createElement(
-            "img"
-          );
-
-
-        mainImage.src =
-          item.main;
-
-
-        mainImage.alt =
-          item.title;
-
-
-
-        mainBox.appendChild(
-          mainImage
-        );
-
-
-        mainSection.appendChild(
-          mainLabel
-        );
-
-
-        mainSection.appendChild(
-          mainBox
-        );
-
-
-        modalImages.appendChild(
-          mainSection
-        );
-
-
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const filter = button.dataset.filter;
+        filter === "all" ? showAllPreview() : showCategory(filter);
+      });
+    });
+
+    function openModal(item) {
+      modalCategory.textContent = categoryNames[item.category];
+      modalTitle.textContent = item.title;
+      modalImages.innerHTML = "";
+
+      if (item.main) {
+        const mainSection = document.createElement("div");
+        mainSection.className = "modal-image-section";
+
+        const mainLabel = document.createElement("div");
+        mainLabel.className = "modal-label";
+        mainLabel.textContent = item.category === "blog" ? "PC VERSION" : "DESIGN";
+
+        const mainBox = document.createElement("div");
+        mainBox.className = "modal-image-block";
+
+        const mainImage = document.createElement("img");
+        mainImage.src = item.main;
+        mainImage.alt = item.title;
+
+        mainBox.appendChild(mainImage);
+        mainSection.appendChild(mainLabel);
+        mainSection.appendChild(mainBox);
+        modalImages.appendChild(mainSection);
       }
 
+      if (item.sub) {
+        const mobileSection = document.createElement("div");
+        mobileSection.className = "modal-image-section mobile";
 
+        const mobileLabel = document.createElement("div");
+        mobileLabel.className = "modal-label";
+        mobileLabel.textContent = "MOBILE VERSION";
 
-      /* MOBILE IMAGE */
+        const mobileBox = document.createElement("div");
+        mobileBox.className = "modal-image-block";
 
-      if (
-        item.sub
-      ) {
+        const mobileImage = document.createElement("img");
+        mobileImage.src = item.sub;
+        mobileImage.alt = item.title;
 
-
-        const mobileSection =
-          document.createElement(
-            "div"
-          );
-
-
-        mobileSection.className =
-          "modal-image-section mobile";
-
-
-
-        const mobileLabel =
-          document.createElement(
-            "div"
-          );
-
-
-        mobileLabel.className =
-          "modal-label";
-
-
-        mobileLabel.textContent =
-          "MOBILE VERSION";
-
-
-
-        const mobileBox =
-          document.createElement(
-            "div"
-          );
-
-
-        mobileBox.className =
-          "modal-image-block";
-
-
-
-        const mobileImage =
-          document.createElement(
-            "img"
-          );
-
-
-        mobileImage.src =
-          item.sub;
-
-
-        mobileImage.alt =
-          item.title;
-
-
-
-        mobileBox.appendChild(
-          mobileImage
-        );
-
-
-        mobileSection.appendChild(
-          mobileLabel
-        );
-
-
-        mobileSection.appendChild(
-          mobileBox
-        );
-
-
-        modalImages.appendChild(
-          mobileSection
-        );
-
-
+        mobileBox.appendChild(mobileImage);
+        mobileSection.appendChild(mobileLabel);
+        mobileSection.appendChild(mobileBox);
+        modalImages.appendChild(mobileSection);
       }
 
-
-
-      modal.classList.add(
-        "show"
-      );
-
-
-      document.body.style.overflow =
-        "hidden";
-
-
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
     }
-
-
-
-    /* =========================================
-       CLOSE MODAL
-    ========================================== */
 
     function closeModal() {
-
-      modal.classList.remove(
-        "show"
-      );
-
-
-      document.body.style.overflow =
-        "";
-
+      modal.classList.remove("show");
+      document.body.style.overflow = "";
     }
 
+    modalClose.addEventListener("click", closeModal);
 
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeModal();
+    });
 
-    modalClose.addEventListener(
-      "click",
-      closeModal
-    );
-
-
-
-    modal.addEventListener(
-      "click",
-      function (
-        event
-      ) {
-
-        if (
-          event.target
-          ===
-          modal
-        ) {
-
-          closeModal();
-
-        }
-
-      }
-    );
-
-
-
-    document.addEventListener(
-      "keydown",
-      function (
-        event
-      ) {
-
-        if (
-          event.key
-          ===
-          "Escape"
-        ) {
-
-          closeModal();
-
-        }
-
-      }
-    );
-
-
-
-    /* =========================================
-       START
-    ========================================== */
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeModal();
+    });
 
     createPortfolioItems();
-
-
-    /*
-      최초 접속 시
-      모든 작업물 표시
-    */
-
     showAllPreview();
-
-
   </script>
-
-
 </body>
-
 </html>
